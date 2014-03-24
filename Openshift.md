@@ -1,6 +1,7 @@
-DIY your env for web hosting, use openshift as VPS
-
+Use openshift as VPS
 ======
+
+
 
 1, apply an openshift account, you can add some cartridge MongoDB 2.4 database added. 
 
@@ -8,8 +9,9 @@ DIY your env for web hosting, use openshift as VPS
 
 3, add mongodb cartridge; add rockmongo cartridge; etc. This can be done on web page.
 
-4, From now on, the operations are under ssh, for example, ssh 532e5a96e0b8cd1057000238@crike-geekben.rhcloud.com
-  you can find the ssh address on the web page with your account login.
+4, From now on, the operations are under ssh, you can find the ssh address on the web page with your account login.
+
+  * before this, you need to paste your public key to openshift account setting like github.
 
 5, Mkdir under $OPENSHIFT_DATA_DIR, virtualenv <the dir you just created>, cd <the dir again>, source bin/activate
 
@@ -34,9 +36,9 @@ DIY your env for web hosting, use openshift as VPS
     export PYTHONIOENCODING=utf-8
     python manage.py runserver $OPENSHIFT_PYTHON_IP:$OPENSHIFT_PYTHON_PORT &
 
-9， if mongodb connetion refused, use "gear start --cart mongodb", you can also "gear start --cart rockmongo" to start other cartridges
+9, if mongodb connetion refused, use "gear start --cart mongodb", you can also "gear start --cart rockmongo" to start other cartridges
 
-10， python manage.py syncdb; ./restart.sh
+10, python manage.py syncdb; ./restart.sh
 
-11， pull the code to your local machine, then you can modify and push your updated code to web host. You can find the ssh adress from the web page
+11, pull the code to your local machine, then you can modify and push your updated code to web host. You can find the ssh adress from the web page
 
