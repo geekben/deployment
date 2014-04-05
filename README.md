@@ -25,4 +25,4 @@ About web host deployment, web hosting resources
 * Azure
   * free for 3 months
 * aliyun
-  * free for 4 days, at least 55yun/day after that
+  * free for 4 days, at least 55yun/month after that
