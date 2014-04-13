@@ -160,6 +160,7 @@ server {
     }
 }
 ```
+* python manage.py collectstatic   *(very important)*
 * create symbolic link in /etc/nginx/sites-enabled/ to the file created in available
 * sudo service nginx restart
 
