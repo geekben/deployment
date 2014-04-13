@@ -160,7 +160,10 @@ server {
     }
 }
 ```
-* python manage.py collectstatic   *(very important)*
 * create symbolic link in /etc/nginx/sites-enabled/ to the file created in available
 * sudo service nginx restart
 
+misc
+=====
+* python manage.py collectstatic   *(very important)*
+* if you want to set DEBUG=False in settings.py, you also need to modify ALLOWED_HOSTS=[], add your site urls to this list
