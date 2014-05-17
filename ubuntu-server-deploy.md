@@ -20,7 +20,7 @@ http://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supe
 
 ###gunicorn
 * pip install gunicorn
-* create a file in your webapp dir/bin (~/crike/bin) like this:
+* create a file named as "gunicorn_start" (used later) in your webapp dir/bin (~/crike/bin) like this:
 ```bash
 #!/bin/bash
 
