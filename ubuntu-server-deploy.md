@@ -58,7 +58,7 @@ exec ../../../bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
 ###supervisor
 use this to run gunicorn_start with the system booting or restart it after crash
 * sudo apt-get install supervisor
-* create a file under /etc/supervisor/conf.d/<crike>.conf
+* create a file like /etc/supervisor/conf.d/crike.conf
 ```
 [program:crike]
 command = /home/hongxian/crike/bin/gunicorn_start                     ; Command to start app
@@ -93,7 +93,7 @@ hello: started
 ###Nginx
 * sudo apt-get install nginx
 * sudo service nginx start
-* Create an Nginx virtual server configuration for Django under /etc/nginx/sites-available
+* Create an Nginx virtual server configuration file:crike.nginxconf for Django under /etc/nginx/sites-available
 ```
 upstream crike_server {
   # fail_timeout=0 means we always retry an upstream even if it failed
