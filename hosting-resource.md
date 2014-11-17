@@ -23,3 +23,5 @@ Hosting resources
   * free for 3 months
 * aliyun
   * free for 4 days, at least 55yun/month after that
+* nitrous
+  * https://www.nitrous.io/ has free vps
