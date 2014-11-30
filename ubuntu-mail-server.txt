@@ -1,0 +1,16 @@
+安装Postfix运行命令：
+apt-get install postfix
+
+安装postfix，配置界面出来后选择Internet Site，System mail name填写xx.com。然后postfix应该就安装完毕并且启动了。
+如果要给邮件服务器增加域名就修改/etc/postfix/main.cf文件中的如下行:
+mydestination = xx.com, mail.xx.com localhost, localhost.localdomain, localhost
+
+安装一个简单的邮件客户端用于测试：
+apt-get install mailx （mailutils）
+
+给本机（本用户的邮箱）发送一个邮件
+ 
+echo "test"|mail xx@xx.com
+ 
+检查是否收到邮件
+mail（或者到/var/mail/用户名 下查看，注意，如果是root用户的话可能没法收到所发的邮件并且在/var/mail下对应的是nobody文件）
