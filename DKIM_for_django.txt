@@ -1,0 +1,55 @@
+1, 重载 _send function of django email_backend
+https://djangosnippets.org/snippets/1995/
+You'll need pydkim.
+Just include this code in project_name.email_backend.py, for example, and select it in your settings file; e.g. EMAIL_BACKEND = 'project_name.email_backend.DKIMBackend'
+from django.core.mail.backends.smtp 
+import EmailBackend
+from django.conf import settings
+import dkim # http://hewgill.com/pydkim
+
+class DKIMBackend(EmailBackend):
+    def _send(self, email_message):
+        """A helper method that does the actual sending + DKIM signing."""
+        if not email_message.recipients():
+            return False
+        try:
+            message_string = email_message.message().as_string()
+            signature = dkim.sign(message_string,
+                                  settings.DKIM_SELECTOR,
+                                  settings.DKIM_DOMAIN,
+                                  settings.DKIM_PRIVATE_KEY)
+            self.connection.sendmail(email_message.from_email,
+                    email_message.recipients(),
+                    signature+message_string)
+        except:
+            if not self.fail_silently:
+                raise
+            return False
+        return True
+
+
+2, 配置settings：
+DKIM_SELECTOR = 'dkim' (这个可以是任意字符串，后面加DNS记录时会用到)
+DKIM_DOMAIN = 'tengmanpinglun.com'
+DKIM_PRIVATE_KEY = '''
+-----BEGIN RSA PRIVATE KEY-----
+xxxxxxxx(the string of private key)
+-----END RSA PRIVATE KEY-----
+'''
+
+最后private key 是由如下命令产生
+$ openssl genrsa -out rsa.private 1024
+对应公钥：
+$ openssl rsa -in rsa.private -out rsa.public -pubout -outform PEM
+
+
+3, linode VM 加DNS记录:
+https://www.linode.com/docs/networking/dns/adding-dns-records
+https://manager.linode.com/dns/domain/tengmanpinglun.com
+
+
+1. _domainkey.tengmanpinglun.com
+"o=~; r=contact@example.com"
+2. dkim._domainkey.tengmanpinglun.com
+"k=rsa; p={public-key-base64-string-here}"
+
