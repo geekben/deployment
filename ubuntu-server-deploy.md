@@ -168,3 +168,4 @@ misc
 =====
 * python manage.py collectstatic   *(very important)*
 * if you want to set DEBUG=False in settings.py, you also need to modify ALLOWED_HOSTS=[], add your site urls to this list
+* if you met this: "connect() to unix:/root/crike/run/gunicorn.sock failed (13: Permission denied) while connecting to upstream,", you should check your nginx work process's owner, "ps -ef | grep nginx", then modify the user to root in /etc/nginx/nginx.conf
